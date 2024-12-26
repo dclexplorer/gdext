@@ -91,7 +91,7 @@ pub fn is_godot_type_deleted(godot_ty: &str) -> bool {
     if godot_ty.starts_with("OpenXR") {
         let target_os = std::env::var("CARGO_CFG_TARGET_OS");
         match target_os.as_deref() {
-            Ok("ios") => return true,
+            Ok("ios") | Ok("emscripten") => return true,
             Ok("macos") => {
                 #[cfg(before_api = "4.2")]
                 return true;
